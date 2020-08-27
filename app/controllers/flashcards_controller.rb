@@ -10,6 +10,7 @@ class FlashcardsController < ApplicationController
     end
 
     def show
+        render json: FlashcardSerializer.new(@flashcard)
     end
 
     def create
@@ -19,6 +20,7 @@ class FlashcardsController < ApplicationController
     end
 
     def destroy
+        @flashcard.destroy
     end
 
     private
