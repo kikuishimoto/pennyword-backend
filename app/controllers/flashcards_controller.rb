@@ -14,9 +14,21 @@ class FlashcardsController < ApplicationController
     end
 
     def create
+        @flashcard = Flashcard.new(flashcard_params)
+
+        if @flashcard.save
+          render json: @flashcard, status: :created, location: @flashcard
+        else
+          render json: @flashcard.errors, status: :unprocessable_entity
+        end
     end
 
     def update
+        if @flashcard.update(flashcard_params)
+          render json: @flashcard
+        else
+          render json: @flashcard.errors, status: :unprocessable_entity
+        end
     end
 
     def destroy
