@@ -2,6 +2,11 @@ class FlashcardsController < ApplicationController
     before_action :set_flashcard, only: [:show, :update, :destroy]
 
     def index
+        @flashcards = Flashcard.all
+        options = {
+          include: [:category]
+        }
+        render json: FlashcardSerializer.new(@flashcards, options)
     end
 
     def show
