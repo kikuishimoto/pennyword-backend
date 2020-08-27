@@ -24,6 +24,11 @@ class CategoriesController < ApplicationController
     end
 
     def update
+        if @category.update(category_params)
+          render json: @category
+        else
+          render json: @category.errors, status: :unprocessable_entity
+        end
     end
 
     def destroy
