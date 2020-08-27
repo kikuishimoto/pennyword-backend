@@ -37,6 +37,10 @@ class CategoriesController < ApplicationController
 
     private
 
+    def set_category
+        @category = Category.find(params[:id])
+    end
+
     def category_params
         params.require(:category).permit(:title, :description)
     end
