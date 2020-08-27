@@ -18,7 +18,7 @@ Category.create([
 
 ])
 
-Card.create([
+Flashcard.create([
   {
     title: "Happy", 
     description: "A happy face.", 
