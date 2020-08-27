@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
     end
 
     def show
+        render json: CategorySerializer.new(@category)
     end
 
     def create
