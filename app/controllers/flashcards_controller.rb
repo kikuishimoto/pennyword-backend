@@ -19,7 +19,7 @@ class FlashcardsController < ApplicationController
         if @flashcard.save
           render json: @flashcard, status: :created, location: @flashcard
         else
-          render json: @flashcard.errors, status: :unprocessable_entity
+          render json: @flashcard.errors
         end
     end
 
@@ -27,7 +27,7 @@ class FlashcardsController < ApplicationController
         if @flashcard.update(flashcard_params)
           render json: @flashcard
         else
-          render json: @flashcard.errors, status: :unprocessable_entity
+          render json: @flashcard.errors
         end
     end
 
