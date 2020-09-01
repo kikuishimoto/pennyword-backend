@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_170101) do
+ActiveRecord::Schema.define(version: 2020_08_27_162616) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -23,11 +23,10 @@ ActiveRecord::Schema.define(version: 2020_08_27_170101) do
     t.string "title"
     t.text "description"
     t.string "image"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "category_id", null: false
     t.index ["category_id"], name: "index_flashcards_on_category_id"
   end
 
-  add_foreign_key "flashcards", "categories"
 end

@@ -14,12 +14,15 @@ class FlashcardsController < ApplicationController
     end
 
     def create
-        @flashcard = Flashcard.new(flashcard_params)
-
-        if @flashcard.save
-          render json: @flashcard, status: :created, location: @flashcard
+        flashcard = Flashcard.new(flashcard_params) 
+      
+        category = Category.find_or_create_by(title: params[:category])
+        flashcard.category = category
+        
+        if flashcard.save
+          render json: FlashcardSerializer.new(flashcard)
         else
-          render json: @flashcard.errors
+          render json: flashcard.errors
         end
     end
 
@@ -32,7 +35,9 @@ class FlashcardsController < ApplicationController
     end
 
     def destroy
-        @flashcard.destroy
+      flashcard = Flashcard.find(params[:id])
+      flashcard.destroy
+      render json: {message: "DELETED"}
     end
 
     private
@@ -42,7 +47,7 @@ class FlashcardsController < ApplicationController
     end
 
     def flashcard_params
-        params.require(:flashcard).permit(:title, :description, :image, :category_id)
+        params.require(:flashcard).permit(:title, :description, :image, :category_id, :category) #:category_id
     end
 
 end

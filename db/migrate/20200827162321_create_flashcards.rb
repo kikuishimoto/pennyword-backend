@@ -4,7 +4,7 @@ class CreateFlashcards < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :description
       t.string :image
-
+      t.belongs_to :category
       t.timestamps
     end
   end
